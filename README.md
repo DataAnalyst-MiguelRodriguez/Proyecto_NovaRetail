@@ -1,35 +1,58 @@
-Explorando factores de comportamiento en NovaRetail+
+# 📊 NovaMarket: Análisis de Correlación de Actividad, Compras e Ingresos
 
-NovaRetail+ es una plataforma de comercio electrónico en Latinoamérica. Este análisis busca responder:
+Análisis exploratorio de datos (EDA) en Python sobre **1,500 usuarios** de un e-commerce, para identificar qué métricas de actividad se asocian con las compras y los ingresos mensuales, y traducir los resultados en recomendaciones de negocio.
 
-¿Qué factores del comportamiento del cliente están más fuertemente asociados con el ingreso anual generado?
+![Python](https://img.shields.io/badge/Python-3.x-blue) ![Pandas](https://img.shields.io/badge/Pandas-EDA-150458) ![Seaborn](https://img.shields.io/badge/Seaborn-Visualización-4c72b0) ![SciPy](https://img.shields.io/badge/SciPy-Estadística-8caae6)
 
-Principio rector del proyecto: correlación no implica causalidad.
+## 🎯 Objetivo
+Identificar relaciones entre métricas de actividad (visitas, gasto publicitario, satisfacción, edad), compras e ingresos mensuales, para generar hipótesis accionables para el equipo de negocio. El análisis es **correlacional, no causal**.
 
-Herramientas
-Python (pandas): limpieza y exploración
-Visualización: heatmaps y scatterplots
-Coeficientes de asociación: Pearson, Spearman, punto biserial y V de Cramér
-Metodología
-Limpieza y exploración del dataset.
-Visualización de relaciones con heatmaps y scatterplots.
-Cálculo del coeficiente adecuado según el tipo de variable (numérica, categórica o binaria).
-Interpretación cuidando no atribuir causalidad.
-Hallazgos
+## 🔍 Hallazgos clave
+| # | Hallazgo | Evidencia | Implicación de negocio |
+|---|----------|-----------|------------------------|
+| 1 | Más visitas se asocian con más compras (relación débil-moderada) | Pearson 0.30 · Spearman 0.28 | Probar estrategias de engagement previas a la compra y validarlas con experimentos controlados (A/B) |
+| 2 | La suscripción casi no se asocia con los ingresos | Punto-biserial 0.063 | No usar la suscripción como único criterio de segmentación; combinarla con otras métricas |
+| 3 | Visitas y gasto publicitario van juntos | r = 0.59 (heatmap) | Revisar si el gasto publicitario está atrayendo tráfico o solo sigue al tráfico existente |
+| 4 | Satisfacción y edad casi no muestran relación con compras o ingresos | \|r\| < 0.06 (heatmap) | No priorizar estas variables en segmentaciones iniciales |
 
-1. Compras mensuales e ingreso anual. No se puede afirmar que incentivar las compras mensuales sea la causa única del aumento de ingresos, porque ambas variables podrían contar la misma historia. Hay que revisar la posible colinealidad.
+> Las compras y los ingresos tienen una correlación de 0.96. Es esperable, ya que los ingresos provienen de las compras.
 
-2. Publicidad dirigida y visitas. No se puede afirmar que la publicidad dirigida se convierta eficientemente en ventas directas: su relación con las compras mensuales desciende drásticamente a cerca de 20%.
+## 🧪 Metodología
+1. **Limpieza:** exclusión de usuarios sin visitas en los últimos 30 días.
+2. **Visualización:** heatmap de correlaciones, pairplot y scatterplots de pares clave.
+3. **Coeficientes según el tipo de variable:**
+   - **Pearson y Spearman:** numérica vs. numérica (relación lineal y monótona).
+   - **Punto-biserial:** binaria vs. numérica (suscripción vs. ingresos).
+   - **V de Cramér:** categórica vs. categórica (región vs. dispositivo).
+4. **Interpretación orientada a negocio:** cada hallazgo incluye evidencia, qué se puede afirmar, qué *no* y qué hacer.
 
-3. Satisfacción, edad e ingreso personal. Son independientes del desempeño comercial en este dataset. Esto no significa que no importen, sino que sus efectos no son detectables de forma directa o lineal aquí.
+## 🛠️ Stack
+`Python` · `Pandas` · `NumPy` · `Seaborn` · `Matplotlib` · `SciPy` · `Jupyter Notebook`
 
-Siguientes pasos
-Revisar la colinealidad entre compras mensuales e ingreso anual.
-Probar modelos que capturen relaciones no lineales.
-Estructura del repositorio
-├── data/          # dataset
-├── notebooks/     # análisis en Python
+## ⚠️ Limitaciones
+- Análisis correlacional: no permite afirmar causalidad.
+- Variables no controladas: campañas, antigüedad del usuario, promociones.
+- Efectos de segmentación aún no explorados.
+
+## 🚀 Próximos pasos
+- Análisis por cohortes.
+- Segmentación por dispositivo y región.
+- Diseño de experimentos A/B para validar las hipótesis.
+
+## 📁 Estructura
+```
+├── 8_3_Reporte_de_análisis_de_correlación_NovaMarket.ipynb
+├── nova_market_activity.csv
 └── README.md
-Autor
+```
 
-Miguel Angel Rodriguez Vega · LinkedIn
+## ▶️ Cómo ejecutarlo
+```bash
+git clone https://github.com/TU_USUARIO/TU_REPO.git
+cd TU_REPO
+pip install pandas numpy seaborn matplotlib scipy jupyter
+jupyter notebook
+```
+
+## 👤 Autor
+**TU NOMBRE** · [LinkedIn]https://www.linkedin.com/in/miguel-rodriguez-dataanalyst/ · [Correo]mian.rove04@gmail.com
